@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Bolsa de Trabajo</title>
+{% endblock %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block contenido %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);font-size: 40px"class="text-center">¡Contactáte!</h1>
+      
+      <p class="lead text-justify">
+        <h1 style="position: absolute; top: 43%; left: 50%; transform: translate(-50%, -50%);">Estas son nuestras redes:</h1>
+      </p>
+      <a class="container" href="https://www.instagram.com">
+        <img class="enlarge-img" src="{% static 'css/img/87390.png' %}" alt="Logo" style="width: 100px; height: 70px; position: absolute; top: 60%; left: 35%;">
+      </a>
+      <a class="container" href="https://www.facebook.com">
+        <img class="enlarge-img" style="width: 100px; height: 70px; position: absolute; top: 60%; left: 45%;" src="{% static 'css/img/Facebook_Logo_(2019).png' %}" alt="Logo">
+      </a>
+      <a class="container" href="https://www.twitter.com">
+        <img class="enlarge-img" src="{% static 'css/img/twitter.png' %}" alt="Logo" style="width: 100px; height: 70px; position: absolute; top: 60%; left: 55%;">
+      </a>
+      <a class="container" href="https://www.gmail.com">
+        <img class="enlarge-img" src="{% static 'css/img/Gmail_Logo_512px.png' %}" alt="Logo" style="width: 100px; height: 70px; position: absolute; top: 60%; left: 65%;">
+      </a>
+        
+    </div>
+
+  </div>
+  <style>
+    .enlarge-img {
+      width: 100px;
+      height: 70px;
+      position: absolute;
+      top: 45%;
+      left: 35%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+    }
+  
+    .enlarge-img:hover {
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+  </style>
+</div>
+</div>
+{% endblock %}

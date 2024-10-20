@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+{% block contenido%}
+<div class="comentario" style="position: relative; top: 5%; bottom: 10%;"></div>
+
+<form method="POST" action="{% url 'apps.publicaciones:agregar_comentario' pk=publicacion.id %}/">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Publicar comentario</button>
+    
+</form>
+
+{%endblock%}

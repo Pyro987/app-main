@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Bolsa de Trabajo</title>
+{% endblock %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="text-center">¡Bienvenido a Búsqueda de Empleos!</h1>
+      <center><iframe style="margin-top: 5%;" width="420" height="210" src="https://www.youtube.com/embed/6L_9ZCt3qaE"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe></center>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 5%;">
+  <h2 class="text-center">Últimas Publicaciones</h2>
+  <div class="row">
+    {% for p in publicaciones %}
+    <div class="col-md-3 mb-4" style="margin-top: 5%;">
+      <div class="card">
+        <img src="{{p.imagen.url}}" class="card-img-top" alt="..." style="height: 200px; width: auto; margin-bottom: 5%;">
+        <div class="card-body">
+          <h5 class="card-title">{{p.titulo}}</h5>
+          <p class="card-text">{{p.descripcion}}</p>
+          <a href="{% url 'apps.publicaciones:detalle' p.id %}" class="btn btn-primary">Ver más</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

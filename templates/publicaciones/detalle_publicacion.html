@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+<div style="margin-top: 5%; margin-left: 5%; margin-right: 5%;">
+    <p><img src="{{publicacion.imagen.url}}" alt="imagen" height="200px" width="200px"></p>
+    <h2>{{publicacion.empresa}}</h2>
+    <h5>{{publicacion.titulo}}</h5>
+    <h5>{{publicacion.categoria}}</h5>
+    <p>{{publicacion.descripcion}}</p>
+    <p>{{publicacion.published}}</p>
+</div>
+
+<br>
+<hr>
+<div style="margin-left: 5%; margin-right: 5%; margin-bottom: 10%;">
+    <h2>Comentarios:</h2>
+    {% for comentario in comentarios %}
+    <div>
+        <p><strong>{{ comentario.autor }}</strong></p>
+        <p>{{ comentario.mensaje }}</p>
+        {% if comentario.autor == request.user %}
+        <a href="{% url 'apps.publicaciones:editar_comentario' pk=comentario.id %}" class="btn btn-editar">Editar</a>
+        <a href="{% url 'apps.publicaciones:eliminar_comentario' pk=comentario.id %}" class="btn btn-eliminar">Eliminar</a>
+        {% endif %}
+        <hr>
+    </div>
+    {% endfor %}
+
+    <form method="POST" action="{% url 'apps.publicaciones:agregar_comentario' pk=publicacion.id %}">
+        {% csrf_token %}
+        {{ comentario_form.as_p }}
+        <button type="submit">Agregar comentario</button>
+    </form>
+    
+    <a href="{% url 'apps.publicaciones:ver_publicaciones' %}" class="btn btn-volver">Volver</a>
+</div>
+
+<style>
+    .btn-primary, .btn-volver {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        margin-top: 10px;
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-primary:hover, .btn-volver:hover {
+        color: #fff;
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    .btn-editar, .btn-eliminar {
+        margin-top: 5px;
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-editar {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: #fff;
+    }
+
+    .btn-eliminar {
+        background-color: #dc3545;
+        border-color: #dc3545;
+        color: #fff;
+    }
+</style>
+
+{% endblock %}

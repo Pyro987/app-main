@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block contenido %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<div style="margin-top: 5%; margin-left: 5%;">
+<h1> Eliminar Publicación</h1>
+
+<p> ¿Seguro que desea eliminar la publicación?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-primary" action="" value="Si, eliminar" />
+</form>
+
+<a href="{% url 'apps.publicaciones:ver_publicaciones' %}" class="btn btn-primary" style="font-size: medium; margin-top: 2%;">No, volver</a>
+</div>
+{%endblock%}

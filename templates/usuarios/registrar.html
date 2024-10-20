@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block title %}
+<title>Registro</title>
+{% endblock %}
+
+{% block contenido %}
+<div class="container registro-form"> 
+  <form enctype="multipart/form-data" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" value="Registrarse">Registrarse</button>
+  </form>
+  
+</div>
+
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+<style>
+  
+  .registro-form {
+    margin-right: 600px;
+    margin-bottom: 100px; 
+  }
+
+</style>
+{% endblock %}
+
+
+

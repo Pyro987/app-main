@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block contenido %}
+<div class="main-container" style="text-align: center; position: relative; margin-left: 5%; margin-top: 5%; margin-bottom: 5%; margin-right: 5%;">
+    
+    {% if instancia_existente %}
+    <form method="POST" action="{% url 'apps.publicaciones:editar_publicacion' instancia_existente.id %}" enctype="multipart/form-data">
+    {% else %}
+    <form method="POST" action="{% url 'apps.publicaciones:agregar_publicaciones' %}" enctype="multipart/form-data">
+    {% endif %}
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Publicar</button>
+    </form>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</div>
+{% endblock %}
+
+
+

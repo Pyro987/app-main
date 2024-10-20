@@ -1,0 +1,60 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-dark">
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  <div class="container-fluid">
+
+    <a class="navbar-brand text-white" href="{% url 'inicio' %}"><img src="{% static 'css/img/logo4-1.png' %}" alt="Logo" style="width: 170px; height: 80px;"></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="{% url 'inicio' %}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="{% url 'acerca_de' %}">Nosotros</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="{% url 'contacto' %}">Contacto</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <img src="{{ user.imagen.url }}" alt="Avatar" style="width: 30px; height: 30px; border-radius: 50%;position: absolute; left: 420px">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="position: absolute;left: 450px;">
+              {{ user.username }}
+            </a>
+            <ul class="dropdown-menu" style="position: absolute;left: 500px;">
+                  {% if user.is_staff %}
+                        <li><a class="dropdown-item" href=" {% url 'apps.publicaciones:agregar_categoria' %}">Agregar Categorías</a></li>
+                        <li><a class="dropdown-item" href=" {% url 'apps.publicaciones:agregar_publicaciones' %}">Agregar Publicaciones</a></li>
+                        
+                  {% endif %}
+                  <li><a class="dropdown-item" href=" {% url 'apps.publicaciones:ver_publicaciones' %}">Ver Publicaciones</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'cerrar_sesion' %}">Cerrar sesión</a></li>
+            </ul>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{% url 'iniciar_sesion' %}">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-white" aria-current="page" href="{% url 'registrar' %}">Registrarme</a>
+          </li>
+          
+        {% endif %}
+          
+      </ul>
+
+      <!-- Barra de búsqueda -->
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" style="max-width: 200px;">
+        <button class="btn btn-outline-success text-white" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div> 
+</nav>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscar Publicaciones</title>
+</head>
+<body>
+    <h1>Buscar Publicaciones</h1>
+    <form method="GET">
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+    
+    {% if resultados %}
+    <h2>Resultados:</h2>
+    <ul>
+        {% for publicacion in resultados %}
+        <li>{{ publicacion.titulo }}: {{ publicacion.contenido }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No se encontraron resultados.</p>
+    {% endif %}
+</body>
+</html>
